@@ -2,7 +2,34 @@
 
 A collection of utility components for react-three-fiber games.
 
-## Animate
+## Lifecycle Helpers
+
+### `<OnUpdate>` and `useOnUpdate`
+
+Use `useOnUpdate` to provide a callback that gets called every frame.
+
+```tsx
+useOnUpdate((dt) => {
+  // do something every frame
+})
+```
+
+> **Note**
+> This hook merely wraps R3F's `useFrame` hook, with a minor change to the order of arguments passed in (deltatime first, R3F state second), and is merely provided for consistency with the other hooks.
+
+`<OnUpdate>` lets you do the same thing from JSX:
+
+```tsx
+<OnUpdate
+  update={(dt, state) => {
+    /* do something */
+  }}
+/>
+```
+
+## Misc Helpers
+
+### `<Animate>`
 
 The `<Animate>` component wraps its children in a scene object that can be used to apply an animation to everything inside it. It accepts a per-frame update callback via the `update` prop that gets passed a reference to the scene object:
 
@@ -46,29 +73,6 @@ function Thingy() {
     </Animate>
   )
 }
-```
-
-## `<OnUpdate>` and `useOnUpdate`
-
-Use `useOnUpdate` to provide a callback that gets called every frame.
-
-```tsx
-useOnUpdate((dt) => {
-  // do something every frame
-})
-```
-
-> **Note**
-> This hook merely wraps R3F's `useFrame` hook, with a minor change to the order of arguments passed in (deltatime first, R3F state second), and is merely provided for consistency with the other hooks.
-
-`<OnUpdate>` lets you do the same thing from JSX:
-
-```tsx
-<OnUpdate
-  update={(dt, state) => {
-    /* do something */
-  }}
-/>
 ```
 
 ## License
