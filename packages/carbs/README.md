@@ -48,6 +48,29 @@ function Thingy() {
 }
 ```
 
+## `<OnUpdate>` and `useOnUpdate`
+
+Use `useOnUpdate` to provide a callback that gets called every frame.
+
+```tsx
+useOnUpdate((dt) => {
+  // do something every frame
+})
+```
+
+> **Note**
+> This hook merely wraps R3F's `useFrame` hook, with a minor change to the order of arguments passed in (deltatime first, R3F state second), and is merely provided for consistency with the other hooks.
+
+`<OnUpdate>` lets you do the same thing from JSX:
+
+```tsx
+<OnUpdate
+  update={(dt, state) => {
+    /* do something */
+  }}
+/>
+```
+
 ## License
 
 ```
