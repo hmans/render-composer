@@ -39,8 +39,8 @@ export const useRenderPipeline = () => useContext(RenderPipelineContext)
 export type RenderPipelineProps = {
   children?: ReactNode
   bloom?: boolean | BloomEffectOptions
-  vignette?: boolean
-  antiAliasing?: boolean
+  vignette?: boolean | ConstructorParameters<typeof VignetteEffect>[0]
+  antiAliasing?: boolean | ConstructorParameters<typeof SMAAEffect>[0]
   effectResolutionFactor?: number
   updatePriority?: number
 }
@@ -112,6 +112,9 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
   /* Create the effects pass. */
   const effectsPass = useMemo(() => {
     if (typeof bloom === "object") Object.assign(effects.bloom, bloom)
+    if (typeof vignette === "object") Object.assign(effects.vignette, vignette)
+    if (typeof antiAliasing === "object")
+      Object.assign(effects.smaa, antiAliasing)
 
     return new EffectPass(
       camera,
