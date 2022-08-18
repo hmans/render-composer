@@ -1,6 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber"
 import {
   BlendFunction,
+  BloomEffectOptions,
   CopyPass,
   DepthCopyPass,
   Effect,
@@ -37,7 +38,7 @@ export const useRenderPipeline = () => useContext(RenderPipelineContext)
 
 export type RenderPipelineProps = {
   children?: ReactNode
-  bloom?: boolean
+  bloom?: boolean | BloomEffectOptions
   vignette?: boolean
   antiAliasing?: boolean
   effectResolutionFactor?: number
@@ -91,13 +92,14 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
       mipmapBlur: true,
       luminanceThreshold: 1,
       luminanceSmoothing: 0.2,
-      intensity: 2
+      intensity: 2,
+      ...(typeof bloom === "object" ? bloom : {})
     } as any)
 
     bloomEffect.inverted = true
 
     return bloomEffect
-  }, [])
+  }, [bloom, scene, camera])
 
   useLayoutEffect(() => {
     composer.addPass(preRenderPass)
