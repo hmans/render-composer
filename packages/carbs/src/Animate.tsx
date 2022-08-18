@@ -1,5 +1,5 @@
 import { GroupProps, RootState } from "@react-three/fiber"
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { Group } from "three"
 import { useOnUpdate } from "./OnUpdate"
 

@@ -11,7 +11,14 @@ import {
   SMAAEffect,
   VignetteEffect
 } from "postprocessing"
-import { createContext, FC, ReactNode, useContext, useLayoutEffect, useMemo } from "react"
+import React, {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useLayoutEffect,
+  useMemo
+} from "react"
 import * as THREE from "three"
 import { BasicDepthPacking } from "three"
 import { LayerRenderPass } from "./LayerRenderPass"

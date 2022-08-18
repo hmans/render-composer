@@ -1,4 +1,5 @@
 import { Canvas, Props } from "@react-three/fiber"
+import React from "react"
 
 export type RenderCanvasProps = Props
 
