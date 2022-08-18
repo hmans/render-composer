@@ -7,7 +7,7 @@
 		"url": "https://hmans.co"
 	},
 	"description": "Various useful bits and bobs for building games with react-three-fiber.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"main": "dist/carbs.cjs.js",
 	"module": "dist/carbs.esm.js",
 	"types": "dist/carbs.cjs.d.ts",

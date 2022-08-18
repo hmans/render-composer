@@ -1,5 +1,11 @@
 # carbs
 
+## 0.0.3
+
+### Patch Changes
+
+- da3bcca: Fix React JSX integration.
+
 ## 0.0.2
 
 ### Patch Changes
