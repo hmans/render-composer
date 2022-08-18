@@ -57,5 +57,5 @@ function App() {
 - [x] A `useRenderPipeline` hook that accessess the render pipeline's context.
 - [x] Implement a pre-render pass and make both the render and depth textures available through context.
 - [x] Provide a bunch of preconfigured post-processing effects and make them toggleable through props.
-- [ ] Make the different post-processing effects configurable beyond just being able to turn them on and off. (eg. allow the user to provide the individual effect's instantiation arguments as a prop.)
+- [x] Make the different post-processing effects configurable beyond just being able to turn them on and off. (eg. allow the user to provide the individual effect's instantiation arguments as a prop.)
 - [ ] Allow the user to configure their own post-processing effects.
