@@ -53,101 +53,71 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
 }) => {
   const { gl, scene, camera, size } = useThree()
 
-  const composer = useMemo(() => {
-    return new EffectComposer(gl, { frameBufferType: THREE.HalfFloatType })
+  const { composer, effects, passes } = useMemo(() => {
+    const composer = new EffectComposer(gl, {
+      frameBufferType: THREE.HalfFloatType
+    })
+
+    const effects = {
+      vignette: new VignetteEffect(),
+      smaa: new SMAAEffect(),
+      bloom: new SelectiveBloomEffect(scene, camera, {
+        blendFunction: BlendFunction.ADD,
+        mipmapBlur: true,
+        luminanceThreshold: 1,
+        luminanceSmoothing: 0.2,
+        intensity: 2,
+        ...(typeof bloom === "object" ? bloom : {})
+      } as any)
+    }
+
+    effects.bloom.inverted = true
+
+    const passes = {
+      preRenderPass: new LayerRenderPass(
+        scene,
+        camera,
+        undefined,
+        camera.layers.mask & ~(1 << Layers.TransparentFX)
+      ),
+      copyPass: new CopyPass(),
+      depthCopyPass: new DepthCopyPass({ depthPacking: BasicDepthPacking }),
+      fullScenePass: new RenderPass(scene, camera),
+      effects: new EffectPass(
+        camera,
+        ...([
+          bloom && effects.bloom,
+          vignette && effects.vignette,
+          antiAliasing && effects.smaa
+        ].filter((e) => e) as Effect[])
+      )
+    }
+
+    composer.addPass(passes.preRenderPass)
+    composer.addPass(passes.depthCopyPass)
+    composer.addPass(passes.copyPass)
+    composer.addPass(passes.fullScenePass)
+    composer.addPass(passes.effects)
+
+    return {
+      composer,
+      effects,
+      passes
+    }
   }, [])
-
-  const preRenderPass = useMemo(() => {
-    return new LayerRenderPass(
-      scene,
-      camera,
-      undefined,
-      camera.layers.mask & ~(1 << Layers.TransparentFX)
-    )
-  }, [scene, camera])
-
-  const copyPass = useMemo(() => {
-    return new CopyPass()
-  }, [])
-
-  const copyDepthPass = useMemo(() => {
-    return new DepthCopyPass({ depthPacking: BasicDepthPacking })
-  }, [])
-
-  const fullScenePass = useMemo(() => {
-    return new RenderPass(scene, camera)
-  }, [camera, scene])
-
-  const vignetteEffect = useMemo(() => {
-    return new VignetteEffect()
-  }, [])
-
-  const smaaEffect = useMemo(() => {
-    return new SMAAEffect()
-  }, [])
-
-  const selectiveBloomEffect = useMemo(() => {
-    const bloomEffect = new SelectiveBloomEffect(scene, camera, {
-      blendFunction: BlendFunction.ADD,
-      mipmapBlur: true,
-      luminanceThreshold: 1,
-      luminanceSmoothing: 0.2,
-      intensity: 2,
-      ...(typeof bloom === "object" ? bloom : {})
-    } as any)
-
-    bloomEffect.inverted = true
-
-    return bloomEffect
-  }, [bloom, scene, camera])
 
   useLayoutEffect(() => {
-    composer.addPass(preRenderPass)
-    composer.addPass(copyDepthPass)
-    composer.addPass(copyPass)
-    composer.addPass(fullScenePass)
-
-    const effects = [
-      bloom && selectiveBloomEffect,
-      vignette && vignetteEffect,
-      antiAliasing && smaaEffect
-    ].filter((e) => e) as Effect[]
-
-    const effectPass = new EffectPass(camera, ...effects)
-    composer.addPass(effectPass)
-
     return () => composer.removeAllPasses()
-  }, [
-    composer,
-    scene,
-    camera,
-    preRenderPass,
-    copyDepthPass,
-    fullScenePass,
-    selectiveBloomEffect,
-    vignetteEffect,
-    smaaEffect,
-    bloom,
-    vignette,
-    antiAliasing
-  ])
+  }, [composer])
 
   useLayoutEffect(() => {
     composer.setSize(size.width, size.height)
 
-    for (const effect of [vignetteEffect, selectiveBloomEffect]) {
-      effect.setSize(
-        size.width * effectResolutionFactor,
-        size.height * effectResolutionFactor
-      )
-    }
-  }, [
-    size.width,
-    size.height,
-    effectResolutionFactor,
-    vignetteEffect,
-    selectiveBloomEffect
-  ])
+    effects.bloom.setSize(
+      size.width * effectResolutionFactor,
+      size.height * effectResolutionFactor
+    )
+  }, [size.width, size.height, effectResolutionFactor])
 
   useFrame(() => {
     composer.render()
@@ -156,8 +126,8 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
   return (
     <RenderPipelineContext.Provider
       value={{
-        depth: copyDepthPass.texture,
-        scene: copyPass.texture
+        depth: passes.depthCopyPass.texture,
+        scene: passes.copyPass.texture
       }}
     >
       {children}
