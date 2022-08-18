@@ -1,5 +1,11 @@
 # render-composer
 
+## 0.1.4
+
+### Patch Changes
+
+- 992c61e: Recreate the entire composer when scene or camera change.
+
 ## 0.1.3
 
 ### Patch Changes
