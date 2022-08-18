@@ -6,12 +6,12 @@
 
 ```tsx
 function App() {
-	return (
-		<RenderCanvas>
-			<RenderPipeline vignette bloom antiAliasing>
-				{/* etc. */}
-			</RenderPipeline>
-		</RenderCanvas>
-	)
+  return (
+    <RenderCanvas>
+      <RenderPipeline vignette bloom antiAliasing>
+        {/* etc. */}
+      </RenderPipeline>
+    </RenderCanvas>
+  )
 }
 ```
