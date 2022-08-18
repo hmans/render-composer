@@ -13,7 +13,7 @@ function App() {
     <RenderCanvas>
       <RenderPipeline
         vignette
-        bloom={{ intensity: 2 }}
+        bloom={{ intensity: 20 }}
         antiAliasing
         effectResolutionFactor={1}
       >

@@ -53,14 +53,17 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
 }) => {
   const { gl, scene, camera, size } = useThree()
 
-  const { composer, effects, passes } = useMemo(() => {
+  /* Create all the basic primitives we will be using. */
+  const { composer, passes, effects } = useMemo(() => {
     const composer = new EffectComposer(gl, {
       frameBufferType: THREE.HalfFloatType
     })
 
     const effects = {
       vignette: new VignetteEffect(),
+
       smaa: new SMAAEffect(),
+
       bloom: new SelectiveBloomEffect(scene, camera, {
         blendFunction: BlendFunction.ADD,
         mipmapBlur: true,
@@ -80,24 +83,18 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
         undefined,
         camera.layers.mask & ~(1 << Layers.TransparentFX)
       ),
+
       copyPass: new CopyPass(),
+
       depthCopyPass: new DepthCopyPass({ depthPacking: BasicDepthPacking }),
-      fullScenePass: new RenderPass(scene, camera),
-      effects: new EffectPass(
-        camera,
-        ...([
-          bloom && effects.bloom,
-          vignette && effects.vignette,
-          antiAliasing && effects.smaa
-        ].filter((e) => e) as Effect[])
-      )
+
+      fullScenePass: new RenderPass(scene, camera)
     }
 
     composer.addPass(passes.preRenderPass)
     composer.addPass(passes.depthCopyPass)
     composer.addPass(passes.copyPass)
     composer.addPass(passes.fullScenePass)
-    composer.addPass(passes.effects)
 
     return {
       composer,
@@ -110,6 +107,27 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
     return () => composer.removeAllPasses()
   }, [composer])
 
+  /* Create the effects pass. */
+  const effectsPass = useMemo(() => {
+    if (typeof bloom === "object") Object.assign(effects.bloom, bloom)
+
+    return new EffectPass(
+      camera,
+      ...([
+        bloom && effects.bloom,
+        vignette && effects.vignette,
+        antiAliasing && effects.smaa
+      ].filter((e) => e) as Effect[])
+    )
+  }, [camera, composer, bloom, vignette, antiAliasing])
+
+  /* Make sure the effects pass is added to the effects composer. */
+  useLayoutEffect(() => {
+    composer.addPass(effectsPass)
+    return () => composer.removePass(effectsPass)
+  }, [effectsPass])
+
+  /* Apply updated sizes and resolutions when they change. */
   useLayoutEffect(() => {
     composer.setSize(size.width, size.height)
 
@@ -119,6 +137,7 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
     )
   }, [size.width, size.height, effectResolutionFactor])
 
+  /* Render the scene! */
   useFrame(() => {
     composer.render()
   }, 1)
