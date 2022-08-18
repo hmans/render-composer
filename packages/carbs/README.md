@@ -2,6 +2,11 @@
 
 A nutritionally dubious, but comforting collection of utility components for react-three-fiber games.
 
+## Goals
+
+- Provide a set of useful hooks and components to make building games with react-three-fiber even more amazing.
+- Where possible, provide all functionality as both a hook and a component, in order to force the user into the imperative layer a little less often.
+
 ## Lifecycle Helpers
 
 Carbs provides a number of lifecycle hooks and components to ease the transition from what you may be used to from game engines to the world of React game development.
