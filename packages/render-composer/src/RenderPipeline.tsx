@@ -103,7 +103,7 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
       effects,
       passes
     }
-  }, [])
+  }, [camera, scene])
 
   useLayoutEffect(() => {
     return () => composer.removeAllPasses()
@@ -140,7 +140,7 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
       size.width * effectResolutionFactor,
       size.height * effectResolutionFactor
     )
-  }, [size.width, size.height, effectResolutionFactor])
+  }, [size.width, size.height, effectResolutionFactor, composer, effects])
 
   /* Render the scene! */
   useFrame(() => {
