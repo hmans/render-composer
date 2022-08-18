@@ -1,2 +1,2 @@
-export * from "./RenderComposer"
+export * from "./RenderCanvas"
 export * from "./RenderPipeline"

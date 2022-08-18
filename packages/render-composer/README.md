@@ -2,6 +2,55 @@
 
 A pre-configured render pipeline for your react-three-fiber games. It is meant to provide some sane defaults for rendering your game, making it easy to make it look fancy, but also providing some tooling like a pre-render pass providing render and depth textures to shaders that need them.
 
+## tl;dr
+
+```tsx
+function App() {
+	return (
+		<RenderCanvas>
+			<RenderPipeline vignette bloom antiAliasing>
+				{/* Just do normal R3F stuff inside. */}
+				<directionalLight position={[30, 10, 10]} intensity={1.5} />
+				<mesh>
+					<icosahedronGeometry />
+					<meshStandardMaterial color="hotpink" />
+				</mesh>
+			</RenderPipeline>
+		</RenderCanvas>
+	)
+}
+```
+
+## Customizing RenderCanvas
+
+`<RenderCanvas>` is just a wrapper around react-three-fiber's `<Canvas>` that applies some configuration that Render Composer needs to operate as expected. You can override any of the props if you want to:
+
+```tsx
+function App() {
+	return (
+		<RenderCanvas frameloop="demand">
+			<RenderPipeline vignette bloom antiAliasing>
+				{/* etc. */}
+			</RenderPipeline>
+		</RenderCanvas>
+	)
+}
+```
+
+Alternatively, you may use your own `<Canvas>`; but if you do this, please make sure it sets the `flat` property:
+
+```tsx
+function App() {
+	return (
+		<Canvas flat>
+			<RenderPipeline vignette bloom antiAliasing>
+				{/* etc. */}
+			</RenderPipeline>
+		</Canvas>
+	)
+}
+```
+
 ## Roadmap
 
 - [x] A `RenderPipeline` component that implements a basic render pipeline using `postprocessing` and provides its data through a context.

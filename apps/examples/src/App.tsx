@@ -1,7 +1,6 @@
 import { Environment } from "@react-three/drei"
-import { Canvas } from "@react-three/fiber"
 import { Animate } from "carbs"
-import { RenderPipeline } from "render-composer"
+import { RenderCanvas, RenderPipeline } from "render-composer"
 import { Object3D } from "three"
 
 const rotate = (o: Object3D, dt: number) => {
@@ -11,17 +10,7 @@ const rotate = (o: Object3D, dt: number) => {
 
 function App() {
 	return (
-		<Canvas
-			shadows
-			flat
-			gl={{
-				powerPreference: "high-performance",
-				alpha: false,
-				depth: true,
-				stencil: false,
-				antialias: false
-			}}
-		>
+		<RenderCanvas>
 			<RenderPipeline vignette bloom antiAliasing>
 				<color attach="background" args={["#264653"]} />
 				<Environment preset="sunset" />
@@ -35,7 +24,7 @@ function App() {
 					</mesh>
 				</Animate>
 			</RenderPipeline>
-		</Canvas>
+		</RenderCanvas>
 	)
 }
 
