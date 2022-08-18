@@ -1,5 +1,5 @@
 import { Environment } from "@react-three/drei"
-import { Animate } from "carbs"
+import { Animate, OnAwake, OnDestroy } from "carbs"
 import { RenderCanvas, RenderPipeline } from "render-composer"
 import { Object3D } from "three"
 
@@ -17,10 +17,17 @@ function App() {
 
         <directionalLight position={[30, 10, 10]} intensity={1.5} />
 
+        <OnAwake callback={() => console.log("hi")} />
+        <OnDestroy callback={() => console.log("bye")} />
+
         <Animate update={rotate}>
           <mesh>
             <icosahedronGeometry />
-            <meshStandardMaterial color="#E9C46A" metalness={0.5} roughness={0.5} />
+            <meshStandardMaterial
+              color="#E9C46A"
+              metalness={0.5}
+              roughness={0.5}
+            />
           </mesh>
         </Animate>
       </RenderPipeline>

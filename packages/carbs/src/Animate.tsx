@@ -3,14 +3,14 @@ import { useRef } from "react"
 import { Group } from "three"
 import { useOnUpdate } from "./OnUpdate"
 
-export type AnimateCallback = (
+export type AnimateUpdateCallback = (
   group: Group,
   dt: number,
   state: RootState
 ) => void
 
 export type AnimateProps = GroupProps & {
-  update?: AnimateCallback
+  update?: AnimateUpdateCallback
 }
 
 export const Animate = ({ update, ...props }: AnimateProps) => {
