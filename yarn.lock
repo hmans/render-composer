@@ -5025,6 +5025,11 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha512-xTgYBc3fuo7Yt7JbiuFxSYGToMoz8fLoE6TC9Wx1P/u+LfeThMOAqmuyECnlBaaJb+u1m9hHiXUEtwW4OzfUJg==
 
+postprocessing@^6.28.5:
+  version "6.28.5"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.28.5.tgz#82363194d366f606cf0f25e32028fd46debca919"
+  integrity sha512-e9aH6T720AiQpStdgqrQSsHzpddFQ7Q8v204sZx4iSTnUuYvkq7mFPOyzhVDlx5NrmXXbwz2PEK2XTq+qEYSMg==
+
 preferred-pm@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/preferred-pm/-/preferred-pm-3.0.3.tgz#1b6338000371e3edbce52ef2e4f65eb2e73586d6"
