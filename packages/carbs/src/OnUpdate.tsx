@@ -3,17 +3,17 @@ import { RootState, useFrame } from "@react-three/fiber"
 export type UpdateCallback = (dt: number, state: RootState) => void
 
 export type OnUpdateProps = {
-  callback: UpdateCallback
+  fun: UpdateCallback
   priority?: number
 }
 
-export const useOnUpdate = (callback: UpdateCallback, priority?: number) => {
+export const useOnUpdate = (fun: UpdateCallback, priority?: number) => {
   useFrame((state, dt) => {
-    callback?.(dt, state)
+    fun?.(dt, state)
   }, priority)
 }
 
-export const OnUpdate = ({ callback, priority }: OnUpdateProps) => {
-  useOnUpdate(callback, priority)
+export const OnUpdate = ({ fun, priority }: OnUpdateProps) => {
+  useOnUpdate(fun, priority)
   return null
 }

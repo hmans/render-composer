@@ -10,14 +10,14 @@ export type AnimateUpdateCallback = (
 ) => void
 
 export type AnimateProps = GroupProps & {
-  update?: AnimateUpdateCallback
+  fun?: AnimateUpdateCallback
 }
 
-export const Animate = ({ update, ...props }: AnimateProps) => {
+export const Animate = ({ fun, ...props }: AnimateProps) => {
   const group = useRef<Group>(null!)
 
   useOnUpdate((dt, state) => {
-    update?.(group.current, dt, state)
+    fun?.(group.current, dt, state)
   })
 
   return <group ref={group} {...props} />

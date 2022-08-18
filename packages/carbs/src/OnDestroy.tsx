@@ -3,12 +3,12 @@ import { useEffect } from "react"
 
 export type OnDestroyCallback = (root: RootState) => void
 
-export const useOnDestroy = (callback: OnDestroyCallback) => {
+export const useOnDestroy = (fun: OnDestroyCallback) => {
   const state = useThree()
-  useEffect(() => () => callback(state), [])
+  useEffect(() => () => fun(state), [])
 }
 
-export const OnDestroy = ({ callback }: { callback: OnDestroyCallback }) => {
-  useOnDestroy(callback)
+export const OnDestroy = ({ fun }: { fun: OnDestroyCallback }) => {
+  useOnDestroy(fun)
   return null
 }

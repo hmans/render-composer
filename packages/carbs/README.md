@@ -20,7 +20,7 @@ useOnAwake((state) => {
 
 ```tsx
 <OnAwake
-  callback={(state) => {
+  fun={(state) => {
     /* do something when the component appears */
   }}
 />
@@ -47,7 +47,7 @@ useOnUpdate((dt) => {
 
 ```tsx
 <OnUpdate
-  update={(dt, state) => {
+  fun={(dt, state) => {
     /* do something */
   }}
 />
@@ -57,13 +57,13 @@ useOnUpdate((dt) => {
 
 ### `<Animate>`
 
-The `<Animate>` component wraps its children in a scene object that can be used to apply an animation to everything inside it. It accepts a per-frame update callback via the `update` prop that gets passed a reference to the scene object:
+The `<Animate>` component wraps its children in a scene object that can be used to apply an animation to everything inside it. It accepts a per-frame update callback via the `fun` prop that gets passed a reference to the scene object:
 
 ```tsx
 function Thingy() {
   return (
     <Animate
-      update={(o: Object3D, dt: number) => {
+      fun={(o: Object3D, dt: number) => {
         o.rotation.x += dt * 0.7
         o.rotation.y += dt * 0.5
       }}

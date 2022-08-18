@@ -3,12 +3,12 @@ import { useEffect } from "react"
 
 export type OnAwakeCallback = (state: RootState) => void
 
-export const useOnAwake = (callback: OnAwakeCallback) => {
+export const useOnAwake = (fun: OnAwakeCallback) => {
   const state = useThree()
-  useEffect(() => callback(state), [])
+  useEffect(() => fun(state), [])
 }
 
-export const OnAwake = ({ callback }: { callback: OnAwakeCallback }) => {
-  useOnAwake(callback)
+export const OnAwake = ({ fun }: { fun: OnAwakeCallback }) => {
+  useOnAwake(fun)
   return null
 }
