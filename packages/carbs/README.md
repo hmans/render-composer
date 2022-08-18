@@ -66,7 +66,7 @@ useOnUpdate((dt) => {
 
 ## Misc Helpers
 
-### `<Animate>`
+### Animate
 
 The `<Animate>` component wraps its children in a scene object that can be used to apply an animation to everything inside it. It accepts a per-frame update callback via the `fun` prop that gets passed a reference to the scene object:
 
