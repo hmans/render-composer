@@ -1,5 +1,11 @@
 # render-composer
 
+## 0.1.1
+
+### Patch Changes
+
+- da3bcca: Fix React JSX integration.
+
 ## 0.1.0
 
 ### Minor Changes
