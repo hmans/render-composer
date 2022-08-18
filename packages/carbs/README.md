@@ -1,6 +1,6 @@
 # Carbs
 
-A collection of utility components for react-three-fiber games.
+A nutritionally dubious, but comforting collection of utility components for react-three-fiber games.
 
 ## Lifecycle Helpers
 
