@@ -1,5 +1,11 @@
 # render-composer
 
+## 0.1.3
+
+### Patch Changes
+
+- 718d298: Loosen up peerDeps a little
+
 ## 0.1.2
 
 ### Patch Changes
