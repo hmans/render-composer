@@ -42,6 +42,7 @@ export type RenderPipelineProps = {
   vignette?: boolean
   antiAliasing?: boolean
   effectResolutionFactor?: number
+  updatePriority?: number
 }
 
 export const RenderPipeline: FC<RenderPipelineProps> = ({
@@ -49,7 +50,8 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
   bloom,
   vignette,
   antiAliasing,
-  effectResolutionFactor = 0.5
+  effectResolutionFactor = 0.5,
+  updatePriority = 1
 }) => {
   const { gl, scene, camera, size } = useThree()
 
@@ -140,7 +142,7 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
   /* Render the scene! */
   useFrame(() => {
     composer.render()
-  }, 1)
+  }, updatePriority)
 
   return (
     <RenderPipelineContext.Provider
