@@ -27,8 +27,9 @@
 	},
 	"scripts": {
 		"build": "preconstruct build",
+		"clean:vite": "rimraf **/node_modules/.vite",
 		"dev": "yarn examples",
-		"examples": "preconstruct dev && cd apps/examples/ && yarn dev",
+		"examples": "yarn clean:vite && preconstruct dev && cd apps/examples/ && yarn dev",
 		"postinstall": "preconstruct dev && manypkg check",
 		"test": "jest --passWithNoTests",
 		"ci": "preconstruct validate && manypkg check && yarn build && yarn test",
