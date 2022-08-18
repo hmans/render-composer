@@ -1,18 +1,12 @@
-import { Environment, OrbitControls } from "@react-three/drei"
-import { Canvas, GroupProps, useFrame } from "@react-three/fiber"
-import { useRef } from "react"
-import { RenderComposer, RenderPipeline } from "render-composer"
-import { Group } from "three"
+import { Environment } from "@react-three/drei"
+import { Canvas, GroupProps } from "@react-three/fiber"
+import { Animate } from "carbs"
+import { RenderPipeline } from "render-composer"
+import { Object3D } from "three"
 
-const AutoRotate = (props: GroupProps) => {
-	const group = useRef<Group>(null!)
-
-	useFrame((_, dt) => {
-		group.current.rotation.x += dt * 0.7
-		group.current.rotation.y += dt * 0.5
-	})
-
-	return <group ref={group} {...props} />
+const rotate = (o: Object3D, dt: number) => {
+	o.rotation.x += dt * 0.7
+	o.rotation.y += dt * 0.5
 }
 
 function App() {
@@ -34,12 +28,12 @@ function App() {
 
 				<directionalLight position={[30, 10, 10]} intensity={1.5} />
 
-				<AutoRotate>
+				<Animate update={rotate}>
 					<mesh>
 						<icosahedronGeometry />
 						<meshStandardMaterial color="#E9C46A" metalness={0.5} roughness={0.5} />
 					</mesh>
-				</AutoRotate>
+				</Animate>
 			</RenderPipeline>
 		</Canvas>
 	)
