@@ -7,7 +7,7 @@
 		"url": "https://hmans.co"
 	},
 	"description": "Declarative graph-based render pipelines.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"main": "dist/render-composer.cjs.js",
 	"module": "dist/render-composer.esm.js",
 	"types": "dist/render-composer.cjs.d.ts",

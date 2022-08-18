@@ -1,5 +1,13 @@
 # render-composer
 
+## 0.1.2
+
+### Patch Changes
+
+- f734ef9: The `vignette`, `bloom` and `antiAliasing` props of `RenderPipeline` now optionally accept configuration options for the effect passes they represent. For details, please refer to the [postprocessing documentation](https://pmndrs.github.io/postprocessing/public/docs/).
+- c48b908: `<RenderPipeline>` now accepts a new `effectResolutionFactor` prop, defaulting to 0.5, that determines the resolution scale of all full-screen effects (like the bloom). Reduce this further to improve performance, or move it closer to 1 for increased fidelity.
+- 740bbc6: New `updatePriority` prop for `RenderPipeline`.
+
 ## 0.1.1
 
 ### Patch Changes
