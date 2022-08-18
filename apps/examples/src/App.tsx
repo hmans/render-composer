@@ -11,7 +11,7 @@ const rotate = (o: Object3D, dt: number) => {
 function App() {
   return (
     <RenderCanvas>
-      <RenderPipeline vignette bloom antiAliasing>
+      <RenderPipeline vignette bloom antiAliasing effectResolutionFactor={1}>
         <color attach="background" args={["#264653"]} />
         <Environment preset="sunset" />
 

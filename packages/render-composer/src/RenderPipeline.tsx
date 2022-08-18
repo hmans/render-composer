@@ -40,13 +40,15 @@ export type RenderPipelineProps = {
   bloom?: boolean
   vignette?: boolean
   antiAliasing?: boolean
+  effectResolutionFactor?: number
 }
 
 export const RenderPipeline: FC<RenderPipelineProps> = ({
   children,
   bloom,
   vignette,
-  antiAliasing
+  antiAliasing,
+  effectResolutionFactor = 0.5
 }) => {
   const { gl, scene, camera, size } = useThree()
 
@@ -107,16 +109,10 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
       bloom && selectiveBloomEffect,
       vignette && vignetteEffect,
       antiAliasing && smaaEffect
-      // new DepthOfFieldEffect(camera, {
-      //   worldFocusDistance: 13,
-      //   worldFocusRange: 5,
-      //   bokehScale: 10
-      // })
     ].filter((e) => e) as Effect[]
-    composer.addPass(new EffectPass(camera, ...effects))
 
-    // const t = new TextureEffect({ texture: copyPass.texture })
-    // composer.addPass(new EffectPass(camera, t))
+    const effectPass = new EffectPass(camera, ...effects)
+    composer.addPass(effectPass)
 
     return () => composer.removeAllPasses()
   }, [
@@ -136,7 +132,20 @@ export const RenderPipeline: FC<RenderPipelineProps> = ({
 
   useLayoutEffect(() => {
     composer.setSize(size.width, size.height)
-  }, [size.width, size.height])
+
+    for (const effect of [vignetteEffect, selectiveBloomEffect]) {
+      effect.setSize(
+        size.width * effectResolutionFactor,
+        size.height * effectResolutionFactor
+      )
+    }
+  }, [
+    size.width,
+    size.height,
+    effectResolutionFactor,
+    vignetteEffect,
+    selectiveBloomEffect
+  ])
 
   useFrame(() => {
     composer.render()
