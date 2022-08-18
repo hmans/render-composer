@@ -1,4 +1,4 @@
-# CARBS
+# Carbs
 
 A collection of utility components for react-three-fiber games.
 
