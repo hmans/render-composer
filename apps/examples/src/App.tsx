@@ -1,5 +1,5 @@
 import { Environment } from "@react-three/drei"
-import { Canvas, GroupProps } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import { Animate } from "carbs"
 import { RenderPipeline } from "render-composer"
 import { Object3D } from "three"
