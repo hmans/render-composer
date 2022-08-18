@@ -1,6 +1,5 @@
 import { Animate } from "@hmans/r3f-animate"
 import { Environment } from "@react-three/drei"
-import { RootState } from "@react-three/fiber"
 import { RenderCanvas, RenderPipeline } from "render-composer"
 import { Object3D } from "three"
 
