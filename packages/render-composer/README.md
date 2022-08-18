@@ -6,18 +6,18 @@ A pre-configured render pipeline for your react-three-fiber games. It is meant t
 
 ```tsx
 function App() {
-	return (
-		<RenderCanvas>
-			<RenderPipeline vignette bloom antiAliasing>
-				{/* Just do normal R3F stuff inside. */}
-				<directionalLight position={[30, 10, 10]} intensity={1.5} />
-				<mesh>
-					<icosahedronGeometry />
-					<meshStandardMaterial color="hotpink" />
-				</mesh>
-			</RenderPipeline>
-		</RenderCanvas>
-	)
+  return (
+    <RenderCanvas>
+      <RenderPipeline vignette bloom antiAliasing>
+        {/* Just do normal R3F stuff inside. */}
+        <directionalLight position={[30, 10, 10]} intensity={1.5} />
+        <mesh>
+          <icosahedronGeometry />
+          <meshStandardMaterial color="hotpink" />
+        </mesh>
+      </RenderPipeline>
+    </RenderCanvas>
+  )
 }
 ```
 
@@ -27,13 +27,13 @@ function App() {
 
 ```tsx
 function App() {
-	return (
-		<RenderCanvas frameloop="demand">
-			<RenderPipeline vignette bloom antiAliasing>
-				{/* etc. */}
-			</RenderPipeline>
-		</RenderCanvas>
-	)
+  return (
+    <RenderCanvas frameloop="demand">
+      <RenderPipeline vignette bloom antiAliasing>
+        {/* etc. */}
+      </RenderPipeline>
+    </RenderCanvas>
+  )
 }
 ```
 
@@ -41,13 +41,13 @@ Alternatively, you may use your own `<Canvas>`; but if you do this, please make 
 
 ```tsx
 function App() {
-	return (
-		<Canvas flat>
-			<RenderPipeline vignette bloom antiAliasing>
-				{/* etc. */}
-			</RenderPipeline>
-		</Canvas>
-	)
+  return (
+    <Canvas flat>
+      <RenderPipeline vignette bloom antiAliasing>
+        {/* etc. */}
+      </RenderPipeline>
+    </Canvas>
+  )
 }
 ```
 

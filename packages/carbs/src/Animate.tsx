@@ -3,15 +3,15 @@ import { useRef } from "react"
 import { Group } from "three"
 
 export type AnimateProps = GroupProps & {
-	update?: (group: Group, dt: number, state: RootState) => void
+  update?: (group: Group, dt: number, state: RootState) => void
 }
 
 export const Animate = ({ update, ...props }: AnimateProps) => {
-	const group = useRef<Group>(null!)
+  const group = useRef<Group>(null!)
 
-	useFrame((state, dt) => {
-		update?.(group.current, dt, state)
-	})
+  useFrame((state, dt) => {
+    update?.(group.current, dt, state)
+  })
 
-	return <group ref={group} {...props} />
+  return <group ref={group} {...props} />
 }
