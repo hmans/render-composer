@@ -6,7 +6,7 @@ A collection of utility components for react-three-fiber games.
 
 Carbs provides a number of lifecycle hooks and components to ease the transition from what you may be used to from game engines to the world of React game development.
 
-### `<OnAwake>` and `useOnAwake`
+### OnAwake and useOnAwake
 
 Use the `useOnAwake` hook to execute a function when the component is first mounted. The `state` parameter passed into the callback function contains a reference to the react-three-fiber state.
 
@@ -26,11 +26,11 @@ useOnAwake((state) => {
 />
 ```
 
-### `<OnDestroy>` and `useOnDestroy`
+### OnDestroy and useOnDestroy
 
 Analogous to `<OnAwake>` and `useOnAwake`, these will execute the given callback function when the component is unmounted.
 
-### `<OnUpdate>` and `useOnUpdate`
+### OnUpdate and useOnUpdate
 
 Use `useOnUpdate` to provide a callback that gets called every frame.
 
@@ -50,6 +50,17 @@ useOnUpdate((dt) => {
   fun={(dt, state) => {
     /* do something */
   }}
+/>
+```
+
+### Effect and LayoutEffect
+
+`<Effect>` and `<LayoutEffect>` are simple wrappers around React's `useEffect` and `useLayoutEffect` hooks and allow you to declare a callback that will be executed every time the component is rendered, or when one of the optionally provided dependencies has changed.
+
+```tsx
+<Effect
+  fun={() => console.log("foo has changed to:", foo)}
+  dependencies={[foo]}
 />
 ```
 
