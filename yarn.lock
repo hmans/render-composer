@@ -1332,10 +1332,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
-"@hmans/r3f-animate@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@hmans/r3f-animate/-/r3f-animate-0.0.3.tgz#d3b55d7e56349968d466487b3e6ed2805d7ab081"
-  integrity sha512-N+8IwtmDE8XMCPch+/LS70FWxnxiC1ryVjygzTduFhuwO+X+v5GgTNSjkzEyw6nKyK6E37OzHxfaZGquNZ7cWA==
+"@hmans/r3f-animate@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@hmans/r3f-animate/-/r3f-animate-0.0.4.tgz#7da2171400bf71a9e2ac8d211dc3e103b3cdd3c6"
+  integrity sha512-qD/q31EaohTqH7+kpXORyYBPxV8bopNr5otpDAnKvjpcxobQFMT5lbSJeyzRxAeJgekxkMarGs90GBT4T5wTmw==
   dependencies:
     "@hmans/r3f-lifecycle" "^0.0.4"
 
@@ -1785,10 +1785,10 @@
   resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.5.2.tgz#cce1b03afbafb23edfb9cd8c517cc7462abffb65"
   integrity sha512-n/wBRSHPqTmEd4BFWY6TeR1o/UY+3ujoqMxLjqy90CcY/ozJzDRuREL3c+pxMeTF2+B7dX33dTPCtFMX51nbxg==
 
-"@react-three/drei@^9.22.7":
-  version "9.22.7"
-  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.22.7.tgz#b283116a091286e3ee1dbebd40a93949767930af"
-  integrity sha512-LCjdSo7iaVcZcYuCQcUQxkbGMxO7o4Pnt+5q0sDGui9VYHjCR+33D29ZdAUf7zBsfu7lWMSk7+rPwhzC9cSeAQ==
+"@react-three/drei@^9.23.1":
+  version "9.23.1"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.23.1.tgz#0610341ae45cc9a84317e2e30914c96e56940eb1"
+  integrity sha512-isSHkDGtOVXdfEm1wG7pMJIk33o2ZSWjikLNS1xX8XKWJEa9bpGjrCBy8ZI+Q/C7Fjk6Y70xrom0x8LidGEz5A==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@react-spring/three" "^9.3.1"
@@ -1808,10 +1808,10 @@
     utility-types "^3.10.0"
     zustand "^3.5.13"
 
-"@react-three/fiber@^8.3.1":
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.3.1.tgz#83379ba5bf5d21a130023ed6de651b0bf467e14a"
-  integrity sha512-5I1fcnE/3Y89MBNtC58N4ZEm962NqlFwBChhS09AVBz9PmD51uwY0z4y6WPMoVVKhUG39CS6iSbTPQwZygkerA==
+"@react-three/fiber@^8.5.0":
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.5.0.tgz#faa9f24ad6eb65565b83716f84deb435783c183c"
+  integrity sha512-/aYcjtBaETF8fnTQPWy1XX3UuJWCkr5n4Hlbuf1bMek8ItbkMdrf/hMDEkzDaGrQYlWEZWgTHs47N6H6mLKm7Q==
   dependencies:
     "@babel/runtime" "^7.17.8"
     "@types/react-reconciler" "^0.26.7"
@@ -6729,10 +6729,10 @@ validate-npm-package-name@^3.0.0:
   dependencies:
     builtins "^1.0.3"
 
-vite@^3.0.7:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-3.0.8.tgz#aa095ad8e3e5da46d9ec7e878f262678965d6531"
-  integrity sha512-AOZ4eN7mrkJiOLuw8IA7piS4IdOQyQCA81GxGsAQvAZzMRi9ZwGB3TOaYsj4uLAWK46T5L4AfQ6InNGlxX30IQ==
+vite@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-3.0.9.tgz#45fac22c2a5290a970f23d66c1aef56a04be8a30"
+  integrity sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==
   dependencies:
     esbuild "^0.14.47"
     postcss "^8.4.16"
