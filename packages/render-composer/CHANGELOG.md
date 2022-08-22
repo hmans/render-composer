@@ -1,5 +1,11 @@
 # render-composer
 
+## 0.1.5
+
+### Patch Changes
+
+- e2ce1c2: Render Composer now requires at least version 8.5.0 of @react-three/fiber.
+
 ## 0.1.4
 
 ### Patch Changes
